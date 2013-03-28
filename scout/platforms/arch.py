@@ -10,4 +10,10 @@ __author__ = 'Jianing Yang <jianingy.yang AT gmail DOT com>'
 
 def detect():
 
-    return 'dumb'
+    from os.path import isfile
+    if isfile('/etc/redhat-release'):
+        return ['rhel', 'rpm']
+    elif isfile('/etc/arch-release'):
+        return ['archlinux']
+
+    return []

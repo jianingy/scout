@@ -18,8 +18,8 @@ class Inspector(BaseInspector):
     def detect(self):
         from os.path import isfile
         from os import access, X_OK
-        for target in ['/usr/bin/rsync0', '/usr/local/bin/rsync0']:
+        for target in ['/usr/bin/rsync', '/usr/local/bin/rsync']:
             if isfile(target) and access(target, X_OK):
                 return True
 
-        raise MissingBinaryIssue(binary='/usr/bin/rsync0')
+        raise MissingBinaryIssue(binary='/usr/bin/rsync')

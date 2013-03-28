@@ -34,7 +34,8 @@ class Automaton(BaseAutomata):
             retval = system('yum install -y rsync')
         elif 'deb' in self.platforms:
             retval = system('apt-get -y install rsync')
-
+        elif 'archlinux' in self.platforms:
+            retval = system('sudo pacman -Sy rsync --noconfirm')
 
         if retval >> 8 == 0:
             return True

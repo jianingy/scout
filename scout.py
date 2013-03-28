@@ -16,22 +16,23 @@ if __name__ == '__main__':
     s = Scout(verbose=True, colorful=True)
     n, last_remain = 0, -1
 
+    s.get_platforms()
     s.inspect()
     remain = len(s.issues)
 
     while True:
         n = n + 1
-        print "Round %s" % n
+        print "INFO: Round %s on platforms: %s" % (n, ",".join(s.platforms))
 
 
 
         remain = len(s.issues)
         if last_remain == remain:
-            print "There's something can be solved automatically."
+            print "WARN: There's something can be solved automatically."
             sys.exit(0)
 
         if remain == 0:
-            print "Everything is OK now"
+            print "INFO: Everything is OK now"
             break
 
         s.fix()

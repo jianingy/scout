@@ -72,11 +72,10 @@ class Scout(object):
             try:
                 p = self.import_(plugin)
                 platform = p.detect()
-                if isinstance(platform, str):
-                    self.platforms.append(platform)
-                else:
-                    raise InvalidPlugin('plugin %s should return a string' \
-                                        % plugin)
+                if platform and isinstance(platform, list):
+                    self.platforms.extend(platform)
+                elif platform:
+                    raise InvalidPlugin('plugin %s should return a list of string' % plugin)
             except NotImplement:
                 self.error('%s is immature' % plugin)
             except Exception:
